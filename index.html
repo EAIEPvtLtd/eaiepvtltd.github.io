@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prop Tech - Smart STR Generator</title>
+    <!-- Include LottieFiles Player Script -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2b3e50;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        /* Centered Title */
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-content h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Navbar dropdown menu on the right */
+        .navbar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #35495e;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Ensures it stays within the screen */
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f4b400;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Hamburger icon */
+        .dropbtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn div {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            margin: 5px 0;
+        }
+
+        /* Layout for form and Lottie animation side by side */
+        #main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 50px;
+        }
+
+        .input-section {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 400px;
+            margin-right: 50px;
+        }
+
+        .input-section input[type="text"], 
+        .input-section input[type="file"], 
+        .input-section input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-section button {
+            padding: 15px 30px;
+            background-color: #35495e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-section button:hover {
+            background-color: #f4b400;
+            transition: 0.3s ease;
+        }
+
+        /* Adjust Lottie animation size and alignment */
+        .lottie-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lottie-container lottie-player {
+            width: 400px; /* Increased size */
+            height: 400px; /* Increased size */
+        }
+
+        footer {
+            background-color: #35495e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        @media screen and (max-width: 768px) {
+            /* For smaller screens, stack the form and animation vertically */
+            #main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .input-section {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* About Us section */
+        .about-us {
+            background-color: #ffffff;
+            padding: 50px;
+            margin: 50px 0;
+            text-align: center;
+            color: #2b3e50;
+        }
+
+        .about-us h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .vision-mission-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .vision, .mission {
+            width: 48%; /* Adjust the width as needed */
+            text-align: justify;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .vision {
+            margin-right: 2%;
+        }
+
+        /* Contact Us section */
+        .contact-us {
+            background-color: #ffffff;
+            padding: 50px;
+            text-align: center;
+            color: #2b3e50;
+        }
+
+        .contact-us h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-us p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-us .info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-us a {
+            color: #2b3e50;
+            text-decoration: none;
+        }
+
+        /* Styles for the landing page title */
+        .landing-page-title {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 2rem;
+            color: #2b3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with title -->
+    <header>
+        <div class="header-content">
+            <h1>Smart Search Title Report Generator </h1>
+        </div>
+
+        <!-- Dropdown Menu -->
+        <div class="navbar">
+            <div class="dropdown">
+                <!-- Hamburger icon -->
+                <button class="dropbtn">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#about-us">About Us</a>
+                    <a href="#contact-us">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Landing page title -->
+    <div class="landing-page-title">
+        <h1>Eternity AI Endeavors Pvt Ltd</h1>
+    </div>
+
+    <!-- Lottie Animation Player -->
+    <div class="lottie-container">
+        <lottie-player 
+            src="https://lottie.host/c1b82357-ac83-4d42-95c7-931d7c7c8584/GRhvzcNSys.json" 
+            background="transparent" 
+            speed="1" 
+            loop autoplay>
+        </lottie-player>
+    </div>
+
+    <!-- Main container with form directly under landing page title -->
+    <div id="main-container">
+        <div class="input-section" id="form-section">
+            <h2>Search Title Input</h2>
+            <p>Fill out the form below to get started with your property search title report.</p>
+
+            <label for="property-desc">Property Description:</label>
+            <input type="text" id="property-desc" name="property_desc" placeholder="Enter Property Description" required>
+
+            <label for="excel-upload">Excel File Folder:</label>
+            <input type="file" id="excel-upload" name="excel_folder" required>
+
+            <label for="search-date">Date of Search Title:</label>
+            <input type="date" id="search-date" name="search_date" required>
+
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div id="about-us" class="about-us">
+        <h2>About Us</h2>
+        <div class="vision-mission-container">
+            <div class="vision">
+                <p><strong>Vision:</strong> To become a trailblazing force in AI-powered software solutions, empowering law firms with state-of-the-art technology to transform legal processes, ensuring precision and efficiency for business.</p>
+            </div>
+            <div class="mission">
+                <p><strong>Mission:</strong> To create innovative AI-powered tools that convert complex legal documents into actionable insights, streamline workflows for legal professionals, and deliver unmatched value through continuous research, development, and collaboration with industry experts.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div id="contact-us" class="contact-us">
+        <h2>Contact Us</h2>
+        <div class="info">
+            <p><strong>Email:</strong> <a href="mailto:director.imi2024@gmail.com">director.imi2024@gmail.com</a>, <a href="mailto:saurabh.h.deshmukh@gmail.com">saurabh.h.deshmukh@gmail.com</a></p>
+            <p><strong>Phone:</strong> 95525 71374</p>
+            <p><strong>Address:</strong> Pimple Saudagar, Pune</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 EAIE's Prop Tech - Smart STR Generator. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
